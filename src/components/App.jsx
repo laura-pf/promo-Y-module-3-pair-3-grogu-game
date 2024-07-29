@@ -1,4 +1,6 @@
 import "../scss/App.scss";
+import Board from "./Board"
+import Header from "./Header"
 import { useState } from "react";
 
 function App() {
@@ -14,7 +16,7 @@ function App() {
 
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]) //Mercancía
 
-  const [eggs, setEggs] = useState([":🥚", "🥚", "🥚"])
+  const [eggs, setEggs] = useState(["🥚", "🥚", "🥚"])
 
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"])
 
@@ -26,27 +28,14 @@ function App() {
 
   return (
     <div className="page">
-      <header>
-        <h1>¡Cuidado con Grogu, {nameUser}!</h1>
-      </header>
-
+      <Header name = {nameUser}/>
       <form>
         <label className="label-input" htmlFor="name">Introduce tu nombre para jugar</label>
         <input className="input-name" id="name" placeholder="Tu nombre" onChange={handleChangeName}></input>
       </form>
 
       <main className="page">
-        <section className="board">
-          <div className="cell">
-            <div className="grogu">👣</div>
-          </div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-        </section>
+        <Board />
 
         <section>
           <button className="dice">Lanzar Dado{diceResult}</button>
