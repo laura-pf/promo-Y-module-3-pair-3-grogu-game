@@ -10,11 +10,15 @@ function App() {
     setNameUser(valueInput)
   }
 
-  const [stepGrogu, setStepGrogu] = useState() // Pasitos del Grogu
+  const [stepGrogu, setStepGrogu] = useState(0) // Pasitos del Grogu
 
-  const [commodity, setCommodity] = useState() //Mercancía
+  const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]) //Mercancía
 
-  const [diceResult, setdiceResult] = useState(0) //Valor del dado
+  const [eggs, setEggs] = useState([":🥚", "🥚", "🥚"])
+
+  const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"])
+
+  const [diceResult, setdiceResult] = useState(null) //Valor del dado
 
   const [stateGame, setStateGame] = useState("En curso") //Estado del juego
 
@@ -45,7 +49,7 @@ function App() {
         </section>
 
         <section>
-          <button className="dice">Lanzar Dado</button>
+          <button className="dice">Lanzar Dado{diceResult}</button>
           <div className="game-status">{stateGame}</div>
         </section>
 
