@@ -1,7 +1,7 @@
 import "../scss/App.scss";
 import Board from "./Board";
 import Header from "./Header";
-import Dice from "/.Dice";
+import Dice from "./Dice";
 import { useState } from "react";
 
 function App() {
@@ -27,7 +27,19 @@ function App() {
   const [reset, setReset] = useState(); // Btn reset
 
   function rollDice() {
-    setdiceResult(Math.ceil(Math.random() * 4));
+    const randomNumber = Math.ceil(Math.random() * 4) + 1;
+    setdiceResult(randomNumber);
+    console.log(randomNumber);
+
+    if (randomNumber === 1) {
+      cookies.pop();
+    } else if (randomNumber === 2) {
+      eggs.pop();
+    } else if (randomNumber === 3) {
+      frogs.pop();
+    } else {
+      setStepGrogu((groguPosition) => groguPosition + 1);
+    }
   }
 
   return (
@@ -49,7 +61,7 @@ function App() {
         <Board />
 
         <section>
-          <Dice resutl={diceResult} onClickButton={rollDice} />
+          <Dice onClickButton={rollDice} />
           <div className="game-status">{stateGame}</div>
         </section>
 
