@@ -12,7 +12,7 @@ function App() {
     setNameUser(valueInput);
   };
 
-  const [stepGrogu, setStepGrogu] = useState(0); // Pasitos del Grogu
+  const [stepGrogu, setStepGrogu] = useState(""); // Pasitos del Grogu
 
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]); //Mercancía
 
@@ -27,7 +27,7 @@ function App() {
   const [reset, setReset] = useState(); // Btn reset
 
   function rollDice() {
-    const randomNumber = Math.ceil(Math.random() * 4) + 1;
+    const randomNumber = Math.ceil(Math.random() * 4);
     setdiceResult(randomNumber);
     console.log(randomNumber);
 
@@ -58,7 +58,7 @@ function App() {
       </form>
 
       <main className="page">
-        <Board />
+        <Board position={stepGrogu} />
 
         <section>
           <Dice onClickButton={rollDice} />
