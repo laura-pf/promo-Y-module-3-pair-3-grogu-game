@@ -12,7 +12,7 @@ function App() {
     setNameUser(valueInput);
   };
 
-  const [stepGrogu, setStepGrogu] = useState(0); // Pasitos del Grogu
+  const [stepGrogu, setStepGrogu] = useState(""); // Pasitos del Grogu
 
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]); //Mercancía
 
@@ -58,7 +58,7 @@ function App() {
       </form>
 
       <main className="page">
-        <Board />
+        <Board position={stepGrogu} />
 
         <section>
           <Dice onClickButton={rollDice} />
