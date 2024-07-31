@@ -27,7 +27,7 @@ function App() {
   const [reset, setReset] = useState(); // Btn reset
 
   function rollDice() {
-    const randomNumber = Math.ceil(Math.random() * 4) + 1;
+    const randomNumber = Math.ceil(Math.random() * 4);
     setdiceResult(randomNumber);
     console.log(randomNumber);
 
