@@ -2,17 +2,14 @@ import "../scss/App.scss";
 import Board from "./Board";
 import Header from "./Header";
 import Dice from "./Dice";
+import Form from "./Form"
+import Reset from "./Reset"
 import { useState } from "react";
 
 function App() {
   const [nameUser, setNameUser] = useState(""); //Actualizar el input del nombre del usuario
 
-  const handleChangeName = (event) => {
-    const valueInput = event.target.value;
-    setNameUser(valueInput);
-  };
-
-  const [stepGrogu, setStepGrogu] = useState(""); // Pasitos del Grogu
+  const [stepGrogu, setStepGrogu] = useState(0); // Pasitos del Grogu
 
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]); //Mercancía
 
@@ -20,45 +17,50 @@ function App() {
 
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
 
-  const [diceResult, setdiceResult] = useState(null); //Valor del dado
+  //const [diceResult, setdiceResult] = useState(null); //Valor del dado
 
   const [stateGame, setStateGame] = useState("En curso"); //Estado del juego
 
-  const [reset, setReset] = useState(); // Btn reset
 
   function rollDice() {
     const randomNumber = Math.ceil(Math.random() * 4);
-    setdiceResult(randomNumber);
+    //setdiceResult(randomNumber);
     console.log(randomNumber);
 
     if (randomNumber === 1) {
-      cookies.pop();
+      setCookies.pop();
     } else if (randomNumber === 2) {
-      eggs.pop();
+      setEggs.pop();
     } else if (randomNumber === 3) {
-      frogs.pop();
+      setFrogs.pop();
     } else {
       setStepGrogu((groguPosition) => groguPosition + 1);
     }
   }
 
+function handleChangeInput(value){
+  setNameUser(value)
+}
+
+function handleClickReset(){
+
+  setNameUser("")
+  setStepGrogu(0)
+  setCookies (["🍪", "🍪", "🍪"])
+  setEggs (["🥚", "🥚", "🥚"])
+  setFrogs (["🐸", "🐸", "🐸"])
+  setdiceResult (null)
+  setStateGame ("En curso")
+}
+
   return (
     <div className="page">
       <Header name={nameUser} />
-      <form>
-        <label className="label-input" htmlFor="name">
-          Introduce tu nombre para jugar
-        </label>
-        <input
-          className="input-name"
-          id="name"
-          placeholder="Tu nombre"
-          onChange={handleChangeName}
-        ></input>
-      </form>
+      
+      <Form onChangeInput = {handleChangeInput} user = {nameUser} />
 
       <main className="page">
-        <Board position={stepGrogu} />
+        <Board position = {stepGrogu} />
 
         <section>
           <Dice onClickButton={rollDice} />
@@ -80,9 +82,7 @@ function App() {
           <div className="goods-item">🐸</div>
           <div className="goods-item">🐸</div>
         </section>
-        <section>
-          <button className="restart-button">Reiniciar Juego</button>
-        </section>
+        <Reset onClickReset = {handleClickReset}  />
       </main>
     </div>
   );

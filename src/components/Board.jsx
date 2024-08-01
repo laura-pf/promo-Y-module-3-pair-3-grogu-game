@@ -6,15 +6,14 @@ function Board(props) {
   //fill (null) los rellena con null
 
   function renderCell() {
-    return cells.map((_, index) => <div className="cell" key={index}></div>);
+    return cells.map((_, index) => <div className="cell" key={index}>
+      {props.position === index && <Grogu/> }
+    </div>);
   }
 
   return (
     <>
       <section className="board">
-        <div className="cell">
-          <Grogu />
-        </div>
         {renderCell()}
       </section>
     </>
