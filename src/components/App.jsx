@@ -20,6 +20,7 @@ function App() {
   //const [diceResult, setdiceResult] = useState(null); //Valor del dado
 
   const [stateGame, setStateGame] = useState("En curso"); //Estado del juego
+  const totalSteps = 7; // se declara esta variable para usarla luego en la condicion del mensaje, para saber en que casilla esta grogu
 
   function rollDice() {
     const randomNumber = Math.ceil(Math.random() * 4);
@@ -52,8 +53,6 @@ function App() {
       setStateGame("Grogu ha avanzado una casilla");
     }
   }
-
-  const totalSteps = 7;
 
   useEffect(() => {
     if (stepGrogu === totalSteps - 1) {
