@@ -1,9 +1,11 @@
 import "../scss/App.scss";
+import { Routes, Route } from "react-router-dom";
 import Board from "./Board";
 import Header from "./Header";
 import Dice from "./Dice";
 import Form from "./Form";
 import Reset from "./Reset";
+import Footer from "./Footer"
 import { useState, useEffect } from "react";
 
 function App() {
@@ -100,8 +102,14 @@ function App() {
         </section>
         <Reset onClickReset={handleClickReset} />
       </main>
+      <Routes>
+        <Route path="/" element={<Footer/>} />
+      </Routes>
     </div>
   );
 }
+
+//Crear un componente home donde esté el juego, excepto el header.
+//hacer dos rutas, intrucciones y el home.
 
 export default App;
