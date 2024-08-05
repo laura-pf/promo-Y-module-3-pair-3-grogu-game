@@ -28,11 +28,11 @@ function App() {
     console.log(randomNumber);
 
     if (randomNumber === 1) {
-      setCookies.pop();
+      setCookies();
     } else if (randomNumber === 2) {
-      setEggs.pop();
+      setEggs();
     } else if (randomNumber === 3) {
-      setFrogs.pop();
+      setFrogs();
     } else {
       setStepGrogu((groguPosition) => groguPosition + 1);
     }
