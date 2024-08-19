@@ -6,6 +6,12 @@ html {
   background-size: cover;
 }
 
+.container-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
 .page {
   display: flex;
   flex-direction: column;
@@ -56,7 +62,6 @@ html {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
-  
 }
 
 .dice:hover {
@@ -141,12 +146,65 @@ input[type="text"]::placeholder {
   color: #999;
 }
 
-.label-input{
+.label-input {
   margin-bottom: 30px;
   font-size: x-large;
   font-weight: bold;
 }
-.input-name{
+.input-name {
   border-radius: 5px;
   padding: 10px;
+}
+
+.instructions {
+  padding: 80px;
+}
+
+.text {
+  margin: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.p {
+  font-size: medium;
+}
+
+.footer {
+  width: 100vw;
+  margin-bottom: 10px;
+  &__copy {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+.footer__menu-item {
+  font-size: medium;
+}
+
+.active {
+  color: rgb(208, 248, 205); /* Color del texto cuando el enlace está activo */
+  font-weight: bold; /* Negrita para resaltar el enlace activo */
+  border: 1px solid rgb(35, 99, 30);
+  padding: 5px;
+  font-size: medium;
+  text-decoration: none;
+  background-color: rgba(35, 99, 30, 0.288);
+}
+
+/* Estilo para cuando la navegación está pendiente */
+.pending {
+  color: #999; /* Color gris para indicar que está pendiente */
+  cursor: not-allowed; /* Cursor no permitido mientras se navega */
+}
+
+/* Estilo para el NavLink por defecto (si no está activo ni pendiente) */
+.navlink {
+  color: #ffffff; /* Color del texto por defecto */
+  text-decoration: none; /* Sin subrayado por defecto */
 }

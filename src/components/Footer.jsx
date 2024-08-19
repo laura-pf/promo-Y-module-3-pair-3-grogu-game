@@ -4,12 +4,12 @@ function Footer() {
   return (
     <footer className="footer">
       <nav>
-        <ul>
+        <ul className="nav-list">
           <li className="footer__menu-item">
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
+                isPending ? "pending" : isActive ? "active" : "navlink"
               }
             >
               {" "}
@@ -20,7 +20,7 @@ function Footer() {
             <NavLink
               to="/instructions"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
+                isPending ? "pending" : isActive ? "active" : "navlink"
               }
             >
               {" "}
@@ -31,7 +31,7 @@ function Footer() {
             <NavLink
               to="/options"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
+                isPending ? "pending" : isActive ? "active" : "navlink"
               }
             >
               {" "}

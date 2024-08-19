@@ -5,8 +5,10 @@ import Header from "./Header";
 import Dice from "./Dice";
 import Form from "./Form";
 import Reset from "./Reset";
-import Footer from "./Footer"
+import Footer from "./Footer";
 import { useState, useEffect } from "react";
+import Instruccions from "./Instruccions";
+import Options from "./Options";
 
 function App() {
   const [nameUser, setNameUser] = useState(""); //Actualizar el input del nombre del usuario
@@ -19,14 +21,14 @@ function App() {
 
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
 
-  //const [diceResult, setdiceResult] = useState(null); //Valor del dado
+  // const [diceResult, setdiceResult] = useState(null); //Valor del dado
 
   const [stateGame, setStateGame] = useState("En curso"); //Estado del juego
   const totalSteps = 7; // se declara esta variable para usarla luego en la condicion del mensaje, para saber en que casilla esta grogu
 
   function rollDice() {
     const randomNumber = Math.ceil(Math.random() * 4);
-    //setdiceResult(randomNumber);
+    // setdiceResult(randomNumber);
     console.log(randomNumber);
 
     if (randomNumber === 1) {
@@ -35,11 +37,27 @@ function App() {
         newCookies.pop();
         setCookies(newCookies);
         setStateGame(`${nameUser} ha ayudado a mando a recoger una galleta`);
+      } else if (newCookies.length === 0) {
+        setStateGame("Ya no quedan más galletas");
       }
     } else if (randomNumber === 2) {
-      setEggs.pop();
+      const newEgss = [...eggs];
+      if (newEgss.length > 0) {
+        newEgss.pop();
+        setEggs(newEgss);
+        setStateGame(`${nameUser} ha ayudado a mando a recoger un huevo`);
+      } else if (newEgss.length === 0) {
+        setStateGame("Ya no quedan más huevos");
+      }
     } else if (randomNumber === 3) {
-      setFrogs.pop();
+      const newFrogs = [...frogs];
+      if (newFrogs.length > 0) {
+        newFrogs.pop();
+        setFrogs(newFrogs);
+        setStateGame(`${nameUser} ha ayudado a mando a recoger una rana`);
+      } else if (newFrogs.length === 0) {
+        setStateGame("Ya no quedan más ranas");
+      }
     } else {
       setStepGrogu((groguPosition) => groguPosition + 1);
       setStateGame("Grogu ha avanzado una casilla");
@@ -72,39 +90,48 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <Header name={nameUser} />
+    <div className="container-page">
+      <div className="page">
+        <Header name={nameUser} />
 
-      <Form onChangeInput={handleChangeInput} user={nameUser} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <main className="page">
+                <Form onChangeInput={handleChangeInput} user={nameUser} />
+                <Board position={stepGrogu} />
 
-      <main className="page">
-        <Board position={stepGrogu} />
+                <section>
+                  <Dice onClickButton={rollDice} />
+                  <div className="game-status">{stateGame}</div>
+                </section>
 
-        <section>
-          <Dice onClickButton={rollDice} />
-          <div className="game-status">{stateGame}</div>
-        </section>
+                <section className="goods-container">
+                  <div className="goods-item">{cookies[0]}</div>
+                  <div className="goods-item">{cookies[1]}</div>
+                  <div className="goods-item">{cookies[2]}</div>
+                </section>
+                <section className="goods-container">
+                  <div className="goods-item">{eggs[0]}</div>
+                  <div className="goods-item">{eggs[1]}</div>
+                  <div className="goods-item">{eggs[2]}</div>
+                </section>
+                <section className="goods-container">
+                  <div className="goods-item">{frogs[0]}</div>
+                  <div className="goods-item">{frogs[1]}</div>
+                  <div className="goods-item">{frogs[2]}</div>
+                </section>
+                <Reset onClickReset={handleClickReset} />
+              </main>
+            }
+          />
+          <Route path="/instructions" element={<Instruccions />} />
 
-        <section className="goods-container">
-          <div className="goods-item">{cookies[0]}</div>
-          <div className="goods-item">{cookies[1]}</div>
-          <div className="goods-item">{cookies[2]}</div>
-        </section>
-        <section className="goods-container">
-          <div className="goods-item">{eggs[0]}</div>
-          <div className="goods-item">{eggs[1]}</div>
-          <div className="goods-item">{eggs[2]}</div>
-        </section>
-        <section className="goods-container">
-          <div className="goods-item">{frogs[0]}</div>
-          <div className="goods-item">{frogs[1]}</div>
-          <div className="goods-item">{frogs[2]}</div>
-        </section>
-        <Reset onClickReset={handleClickReset} />
-      </main>
-      <Routes>
-        <Route path="/" element={<Footer/>} />
-      </Routes>
+          <Route path="/options" element={<Options />} />
+        </Routes>
+      </div>
+      <Footer />
     </div>
   );
 }
